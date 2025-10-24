@@ -20,13 +20,9 @@
         <td>{{ $peinado->author }}</td>
         <td>{{ $peinado->name }}</td>
         <td>
-        <a href="{{ route('peinado.show', $peinado->id) }}" class="btn btn-success btn-sm">Show</a> 
-          <a href="{{ route('peinado.edit', $peinado) }}" class="btn btn-warning btn-sm">Edit</a>
-          <form action="{{ route('peinado.destroy', $peinado) }}" method="post" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-          </form>
+          <a href="{{ route('peinado.show', $peinado->id) }}" class="btn btn-success btn-sm">Show</a> 
+          <a href="{{ route('peinado.edit', $peinado->id) }}" class="btn btn-warning btn-sm">Edit</a>
+          <a href="{{ route('peinado.destroy', $peinado->id) }}" class="btn btn-danger btn-sm">Edit</a>
         </td>
       </tr>
     @endforeach

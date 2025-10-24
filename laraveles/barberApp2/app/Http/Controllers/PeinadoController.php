@@ -85,7 +85,7 @@ class PeinadoController extends Controller
      */
     public function edit(Peinado $peinado)
     {
-        //
+        return view('peinado.edit', ['peinado' => $peinado]);
     }
 
     /**
@@ -93,7 +93,32 @@ class PeinadoController extends Controller
      */
     public function update(Request $request, Peinado $peinado)
     {
-        //
+    
+        $result = false;
+        $peinado->fill($request->all());
+        try{
+
+            $result = $peinado->save(); //eloquent , inserta objeto en la tabla 
+            $txtmessage = 'The haitcut has been edited';
+            
+        }catch(QueryException $e){
+            $result = false;
+            $txtmessage = 'campo nulo';
+          
+        }catch(\Exception $e){
+
+            $txtmessage = 'fatal error';
+        }
+
+        $message = [
+                'mensajeTexto' => $txtmessage
+            ];
+        if($result){
+            return redirect()->route('main')->with($message);
+            // ->with($message) -> estos datos se guardan en la session
+        }else{           
+            return back()->withInput()->withErrors($message);
+        }
     }
 
     /**
