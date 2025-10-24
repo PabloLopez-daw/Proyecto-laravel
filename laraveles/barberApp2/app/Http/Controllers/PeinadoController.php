@@ -99,6 +99,7 @@ class PeinadoController extends Controller
         try{
 
             $result = $peinado->save(); //eloquent , inserta objeto en la tabla 
+            $result = $peinado->update($request->all());
             $txtmessage = 'The haitcut has been edited';
             
         }catch(QueryException $e){
